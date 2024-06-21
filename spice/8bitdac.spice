@@ -1,0 +1,330 @@
+** sch_path: /home/hprcse/Finfet/8bitdac.sch
+**.subckt 8bitdac
+x1 inp1 d0 d1 d2 d3 d4 d5 net4 d6 net2 GND Vdd 7bitDAC
+x2 net1 d0 d1 d2 d3 d4 d5 net3 d6 inp2 GND Vdd 7bitDAC
+R2 net2 net1 1k m=1
+x3 Vdd GND net4 d7 net3 Vout Switch
+V9 d0 GND pulse(0 0.4 0ns 1p 1p 5u 10u)
+V10 Vdd GND 0.7
+V11 inp1 GND 0.7
+V12 inp2 GND 0
+V13 d1 GND pulse(0 0.4 0ns 1p 1p 10u 20u)
+V14 d2 GND pulse(0 0.5 0ns 1p 1p 20u 40u)
+V15 d3 GND pulse(0 0.5 0ns 1p 1p 40u 80u)
+V16 d4 GND pulse(0 0.5 0ns 1p 1p 80u 160u)
+V1 d5 GND pulse(0 0.5 0ns 1p 1p 160u 320u)
+V2 d6 GND pulse(0 0.5 0ns 1p 1p 320u 640u)
+V3 d7 GND pulse(0 0.6 0ns 1p 1p 640u 1280u)
+**** begin user architecture code
+
+
+.tran 2u 1280u
+.control
+run
+plot d0 d1 d2 d3 d4 d5 Vout
+plot Vout
+plot inp1 inp2
+.endc
+.end
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  /home/hprcse/Finfet/7bitDAC.sym # of pins=12
+** sym_path: /home/hprcse/Finfet/7bitDAC.sym
+** sch_path: /home/hprcse/Finfet/7bitDAC.sch
+.subckt 7bitDAC inp1 d0 d1 d2 d3 d4 d5 Vout d6 inp2 Gnd Vdd
+*.ipin inp1
+*.ipin inp2
+*.ipin Vdd
+*.ipin d0
+*.ipin d1
+*.ipin d2
+*.ipin d3
+*.ipin d4
+*.ipin d5
+*.ipin d6
+*.opin Vout
+*.ipin Gnd
+x3 Vdd Gnd net1 d6 net2 Vout Switch
+R1 net4 net3 1k m=1
+x1 d0 d1 d2 d3 d4 d5 net3 inp2 Vdd Gnd net2 6bitDAC
+x2 d0 d1 d2 d3 d4 d5 inp1 net4 Vdd Gnd net1 6bitDAC
+.ends
+
+
+* expanding   symbol:  /home/hprcse/Finfet/Switch.sym # of pins=6
+** sym_path: /home/hprcse/Finfet/Switch.sym
+** sch_path: /home/hprcse/Finfet/Switch.sch
+.subckt Switch Vdd Gnd inp1 din inp2 Vout
+*.ipin Vdd
+*.ipin inp2
+*.ipin inp1
+*.opin Vout
+*.ipin din
+*.ipin Gnd
+Xnfet1 net2 net1 Gnd Gnd asap_7nm_nfet l=7e-009 nfin=14
+Xpfet1 net2 net1 Vdd Vdd asap_7nm_pfet l=7e-009 nfin=14
+Xpfet2 net1 din Vdd Vdd asap_7nm_pfet l=7e-009 nfin=14
+Xnfet2 net1 din Gnd Gnd asap_7nm_nfet l=7e-009 nfin=14
+Xpfet3 Vout net1 inp1 inp1 asap_7nm_pfet l=7e-009 nfin=14
+Xnfet3 Vout net1 inp2 Gnd asap_7nm_nfet l=7e-009 nfin=14
+Xpfet4 inp2 net2 Vout Vout asap_7nm_pfet l=7e-009 nfin=14
+Xnfet4 inp1 net2 Vout Gnd asap_7nm_nfet l=7e-009 nfin=14
+.ends
+
+
+* expanding   symbol:  /home/hprcse/Finfet/6bitDAC.sym # of pins=11
+** sym_path: /home/hprcse/Finfet/6bitDAC.sym
+** sch_path: /home/hprcse/Finfet/6bitDAC.sch
+.subckt 6bitDAC d0 d1 d2 d3 d4 d5 inp1 inp2 Vdd Gnd Vout
+*.ipin Vdd
+*.ipin inp1
+*.ipin d2
+*.ipin d0
+*.ipin d1
+*.ipin d3
+*.ipin d4
+*.ipin d5
+*.opin Vout
+*.ipin inp2
+*.ipin Gnd
+x1 d2 d0 d4 d3 d1 inp1 net4 Vdd Gnd net1 5bitDAC
+x2 d2 d0 d4 d3 d1 net3 inp2 Vdd Gnd net2 5bitDAC
+x3 Vdd Gnd net1 d5 net2 Vout Switch
+R1 net4 net3 1k m=1
+.ends
+
+
+* expanding   symbol:  /home/hprcse/Finfet/5bitDAC.sym # of pins=10
+** sym_path: /home/hprcse/Finfet/5bitDAC.sym
+** sch_path: /home/hprcse/Finfet/5bitDAC.sch
+.subckt 5bitDAC d2 d0 d4 d3 d1 inp1 inp2 Vdd Gnd Vout
+*.ipin inp1
+*.ipin inp2
+*.ipin Vdd
+*.ipin d0
+*.ipin d3
+*.ipin d2
+*.ipin d1
+*.ipin d4
+*.opin Vout
+*.ipin Gnd
+x1 net3 inp1 d2 d1 d3 d0 net2 Vdd Gnd 4bitDAC
+x2 net4 net1 d2 d1 d3 d0 inp2 Vdd Gnd 4bitDAC
+R1 net2 net1 1k m=1
+x3 Vdd Gnd net3 d4 net4 Vout Switch
+.ends
+
+
+* expanding   symbol:  /home/hprcse/Finfet/4bitDAC.sym # of pins=9
+** sym_path: /home/hprcse/Finfet/4bitDAC.sym
+** sch_path: /home/hprcse/Finfet/4bitDAC.sch
+.subckt 4bitDAC Vout inp1 d2 d1 d3 d0 inp2 Vdd Gnd
+*.ipin inp1
+*.ipin inp2
+*.ipin d1
+*.ipin d0
+*.ipin d2
+*.ipin d3
+*.opin Vout
+*.ipin Vdd
+*.ipin Gnd
+x1 Vdd Gnd net3 d3 net4 Vout Switch
+x2 net3 Gnd Vdd inp1 d2 d1 d0 net1 3bitDAC
+x3 net4 Gnd Vdd net2 d2 d1 d0 inp2 3bitDAC
+R1 net1 net2 1k m=1
+.ends
+
+
+* expanding   symbol:  /home/hprcse/Finfet/3bitDAC.sym # of pins=8
+** sym_path: /home/hprcse/Finfet/3bitDAC.sym
+** sch_path: /home/hprcse/Finfet/3bitDAC.sch
+.subckt 3bitDAC Vout Gnd Vdd inp1 d2 d1 d0 inp2
+*.ipin Vdd
+*.ipin inp1
+*.ipin inp2
+*.ipin d0
+*.ipin d1
+*.ipin d2
+*.ipin Gnd
+*.opin Vout
+x1 inp1 net1 d1 d0 net3 Vdd Gnd 2bitDAC
+x2 net2 inp2 d1 d0 net4 Vdd Gnd 2bitDAC
+x3 Vdd Gnd net3 d2 net4 Vout Switch
+R1 net1 net2 1k m=1
+.ends
+
+
+* expanding   symbol:  /home/hprcse/Finfet/2bitDAC.sym # of pins=7
+** sym_path: /home/hprcse/Finfet/2bitDAC.sym
+** sch_path: /home/hprcse/Finfet/2bitDAC.sch
+.subckt 2bitDAC inp1 inp2 d1 d0 Vout Vdd GND
+*.ipin GND
+*.ipin d0
+*.ipin d1
+*.opin Vout
+*.ipin inp1
+*.ipin inp2
+*.ipin Vdd
+R1 inp1 net1 1k m=1
+R2 net1 net2 1k m=1
+R3 net2 net3 1k m=1
+R4 net3 inp2 1k m=1
+x1 Vdd GND net1 d0 net2 net5 Switch
+x2 Vdd GND net3 d0 inp2 net4 Switch
+x3 Vdd GND net5 d1 net4 Vout Switch
+.ends
+
+.GLOBAL GND
+**** begin user architecture code
+
+.subckt asap_7nm_pfet S G D B l=7e-009 nfin=14
+	npmos_finfet S G D B BSIMCMG_osdi_P l=7e-009 nfin=14
+.ends asap_7nm_pfet
+
+.model BSIMCMG_osdi_P BSIMCMG_va (
++ TYPE = 0
+
+************************************************************
+*                         general                          *
+************************************************************
++version = 107             bulkmod = 1               igcmod  = 1               igbmod  = 0
++gidlmod = 1               iimod   = 0               geomod  = 1               rdsmod  = 0
++rgatemod= 0               rgeomod = 0               shmod   = 0               nqsmod  = 0
++coremod = 0               cgeomod = 0               capmod  = 0               tnom    = 25
++eot     = 1e-009          eotbox  = 1.4e-007        eotacc  = 3e-010          tfin    = 6.5e-009
++toxp    = 2.1e-009        nbody   = 1e+022          phig    = 4.9278          epsrox  = 3.9
++epsrsub = 11.9            easub   = 4.05            ni0sub  = 1.1e+016        bg0sub  = 1.17
++nc0sub  = 2.86e+025       nsd     = 2e+026          ngate   = 0               nseg    = 5
++l       = 2.1e-008        xl      = 1e-009          lint    = -2.5e-009       dlc     = 0
++dlbin   = 0               hfin    = 3.2e-008        deltaw  = 0               deltawcv= 0
++sdterm  = 0               epsrsp  = 3.9             nfin    = 1
++toxg    = 1.8e-009
+************************************************************
+*                            dc                            *
+************************************************************
++cit     = 0               cdsc    = 0.003469        cdscd   = 0.001486        dvt0    = 0.05
++dvt1    = 0.36            phin    = 0.05            eta0    = 0.094           dsub    = 0.24
++k1rsce  = 0               lpe0    = 0               dvtshift= 0               qmfactor= 0
++etaqm   = 0.54            qm0     = 2.183e-012      pqm     = 0.66            u0      = 0.0237
++etamob  = 4               up      = 0               ua      = 1.133           eu      = 0.05
++ud      = 0.0105          ucs     = 0.2672          rdswmin = 0               rdsw    = 200
++wr      = 1               rswmin  = 0               rdwmin  = 0               rshs    = 0
++rshd    = 0               vsat    = 60000           deltavsat= 0.17            ksativ  = 1.592
++mexp    = 2.491           ptwg    = 25              pclm    = 0.01            pclmg   = 1
++pdibl1  = 800             pdibl2  = 0.005704        drout   = 4.97            pvag    = 200
++fpitch  = 2.7e-008        rth0    = 0.15            cth0    = 1.243e-006      wth0    = 2.6e-007
++lcdscd  = 0               lcdscdr = 0               lrdsw   = 1.3             lvsat   = 1441
+************************************************************
+*                         leakage                          *
+************************************************************
++aigc    = 0.007           bigc    = 0.0015          cigc    = 1               dlcigs  = 5e-009
++dlcigd  = 5e-009          aigs    = 0.006           aigd    = 0.006           bigs    = 0.001944
++bigd    = 0.001944        cigs    = 1               cigd    = 1               poxedge = 1.152
++agidl   = 2e-012          agisl   = 2e-012          bgidl   = 1.5e+008        bgisl   = 1.5e+008
++egidl   = 1.142           egisl   = 1.142
+************************************************************
+*                            rf                            *
+************************************************************
+************************************************************
+*                         junction                         *
+************************************************************
+************************************************************
+*                       capacitance                        *
+************************************************************
++cfs     = 0               cfd     = 0               cgso    = 1.6e-010        cgdo    = 1.6e-010
++cgsl    = 0               cgdl    = 0               ckappas = 0.6             ckappad = 0.6
++cgbo    = 0               cgbl    = 0
+************************************************************
+*                       temperature                        *
+************************************************************
++tbgasub = 0.000473        tbgbsub = 636             kt1     = 0               kt1l    = 0
++ute     = -1.2            utl     = 0               ua1     = 0.001032        ud1     = 0
++ucste   = -0.004775       at      = 0.001           ptwgt   = 0.004           tmexp   = 0
++prt     = 0               tgidl   = -0.007          igt     = 2.5
+************************************************************
+*                          noise                           *
+************************************************************
+**)
+.control
+pre_osdi /home/hprcse/Documents/test/bsimcmg.osdi
+.endc
+
+
+
+.subckt asap_7nm_nfet S G D B l=7e-009 nfin=14
+	nnmos_finfet S G D B BSIMCMG_osdi_N l=7e-009 nfin=14
+.ends asap_7nm_nfet
+
+.model BSIMCMG_osdi_N BSIMCMG_va (
++ TYPE = 1
+************************************************************
+*                         general                          *
+************************************************************
++version = 107             bulkmod = 1               igcmod  = 1               igbmod  = 0
++gidlmod = 1               iimod   = 0               geomod  = 1               rdsmod  = 0
++rgatemod= 0               rgeomod = 0               shmod   = 0               nqsmod  = 0
++coremod = 0               cgeomod = 0               capmod  = 0               tnom    = 25
++eot     = 1e-009          eotbox  = 1.4e-007        eotacc  = 1e-010          tfin    = 6.5e-009
++toxp    = 2.1e-009        nbody   = 1e+022          phig    = 4.2466          epsrox  = 3.9
++epsrsub = 11.9            easub   = 4.05            ni0sub  = 1.1e+016        bg0sub  = 1.17
++nc0sub  = 2.86e+025       nsd     = 2e+026          ngate   = 0               nseg    = 5
++l       = 2.1e-008        xl      = 1e-009          lint    = -2e-009         dlc     = 0
++dlbin   = 0               hfin    = 3.2e-008        deltaw  = 0               deltawcv= 0
++sdterm  = 0               epsrsp  = 3.9             nfin    = 1
++toxg    = 1.80e-009
+************************************************************
+*                            dc                            *
+************************************************************
++cit     = 0               cdsc    = 0.01            cdscd   = 0.01            dvt0    = 0.05
++dvt1    = 0.47            phin    = 0.05            eta0    = 0.07            dsub    = 0.35
++k1rsce  = 0               lpe0    = 0               dvtshift= 0               qmfactor= 2.5
++etaqm   = 0.54            qm0     = 0.001           pqm     = 0.66            u0      = 0.0303
++etamob  = 2               up      = 0               ua      = 0.55            eu      = 1.2
++ud      = 0               ucs     = 1               rdswmin = 0               rdsw    = 200
++wr      = 1               rswmin  = 0               rdwmin  = 0               rshs    = 0
++rshd    = 0               vsat    = 70000           deltavsat= 0.2             ksativ  = 2
++mexp    = 4               ptwg    = 30              pclm    = 0.05            pclmg   = 0
++pdibl1  = 0               pdibl2  = 0.002           drout   = 1               pvag    = 0
++fpitch  = 2.7e-008        rth0    = 0.225           cth0    = 1.243e-006      wth0    = 2.6e-007
++lcdscd  = 5e-005          lcdscdr = 5e-005          lrdsw   = 0.2             lvsat   = 0
+************************************************************
+*                         leakage                          *
+************************************************************
++aigc    = 0.014           bigc    = 0.005           cigc    = 0.25            dlcigs  = 1e-009
++dlcigd  = 1e-009          aigs    = 0.0115          aigd    = 0.0115          bigs    = 0.00332
++bigd    = 0.00332         cigs    = 0.35            cigd    = 0.35            poxedge = 1.1
++agidl   = 1e-012          agisl   = 1e-012          bgidl   = 10000000        bgisl   = 10000000
++egidl   = 0.35            egisl   = 0.35
+************************************************************
+*                            rf                            *
+************************************************************
+************************************************************
+*                         junction                         *
+************************************************************
+************************************************************
+*                       capacitance                        *
+************************************************************
++cfs     = 0               cfd     = 0               cgso    = 1.6e-010        cgdo    = 1.6e-010
++cgsl    = 0               cgdl    = 0               ckappas = 0.6             ckappad = 0.6
++cgbo    = 0               cgbl    = 0
+************************************************************
+*                       temperature                        *
+************************************************************
++tbgasub = 0.000473        tbgbsub = 636             kt1     = 0               kt1l    = 0
++ute     = -0.7            utl     = 0               ua1     = 0.001032        ud1     = 0
++ucste   = -0.004775       at      = 0.001           ptwgt   = 0.004           tmexp   = 0
++prt     = 0               tgidl   = -0.007          igt     = 2.5
+************************************************************
+*                          noise                           *
+************************************************************
+**)
+.control
+pre_osdi /home/hprcse/Documents/test/bsimcmg.osdi
+.endc
+
+
+**** end user architecture code
+.end
