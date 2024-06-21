@@ -1,0 +1,54 @@
+v {xschem version=3.4.5 file_version=1.2
+}
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=x1"
+}
+V {}
+S {}
+E {}
+L 4 -180 -110 -180 120 {}
+L 4 -540 120 -180 120 {}
+L 4 -540 -110 -540 120 {}
+L 4 -540 -110 -180 -110 {}
+L 4 -560 -70 -540 -70 {}
+L 4 -560 -50 -540 -50 {}
+L 4 -560 -30 -540 -30 {}
+L 4 -560 -10 -540 -10 {}
+L 4 -560 10 -540 10 {}
+L 4 -560 30 -540 30 {}
+L 4 -560 50 -540 50 {}
+L 4 -560 70 -540 70 {}
+L 4 -560 -90 -540 -90 {}
+L 4 -560 90 -540 90 {}
+L 4 -360 -130 -360 -110 {}
+L 4 -360 120 -360 140 {}
+L 4 -180 -20 -160 -20 {}
+B 5 -562.5 -72.5 -557.5 -67.5 {name=d0 sig_type=std_logic dir=in}
+B 5 -562.5 -52.5 -557.5 -47.5 {name=d1 sig_type=std_logic dir=in}
+B 5 -562.5 -32.5 -557.5 -27.5 {name=d2 sig_type=std_logic dir=in}
+B 5 -562.5 -12.5 -557.5 -7.5 {name=d3 sig_type=std_logic dir=in}
+B 5 -562.5 7.5 -557.5 12.5 {name=d4 sig_type=std_logic dir=in}
+B 5 -562.5 27.5 -557.5 32.5 {name=d5 sig_type=std_logic dir=in}
+B 5 -562.5 47.5 -557.5 52.5 {name=d6 sig_type=std_logic dir=in}
+B 5 -562.5 67.5 -557.5 72.5 {name=d7 sig_type=std_logic dir=in}
+B 5 -562.5 -92.5 -557.5 -87.5 {name=inp1 sig_type=std_logic dir=in}
+B 5 -562.5 87.5 -557.5 92.5 {name=inp2 sig_type=std_logic dir=in}
+B 5 -362.5 -132.5 -357.5 -127.5 {name=Vdd sig_type=std_logic dir=in}
+B 5 -362.5 137.5 -357.5 142.5 {name=Gnd sig_type=std_logic dir=in}
+B 5 -162.5 -22.5 -157.5 -17.5 {name=Vout sig_type=std_logic dir=out}
+T {8bitDAC} -399.5 -6 0 0 0.3 0.3 {}
+T {d0} -535 -74 0 0 0.2 0.2 {}
+T {d1} -535 -54 0 0 0.2 0.2 {}
+T {d2} -535 -34 0 0 0.2 0.2 {}
+T {d3} -535 -14 0 0 0.2 0.2 {}
+T {d4} -535 6 0 0 0.2 0.2 {}
+T {d5} -535 26 0 0 0.2 0.2 {}
+T {d6} -535 46 0 0 0.2 0.2 {}
+T {d7} -535 66 0 0 0.2 0.2 {}
+T {inp1} -535 -94 0 0 0.2 0.2 {}
+T {inp2} -535 86 0 0 0.2 0.2 {}
+T {Vdd} -356 -105 1 0 0.2 0.2 {}
+T {Gnd} -364 115 3 0 0.2 0.2 {}
+T {Vout} -185 -24 0 1 0.2 0.2 {}

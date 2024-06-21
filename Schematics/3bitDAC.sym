@@ -1,0 +1,39 @@
+v {xschem version=3.4.5 file_version=1.2
+}
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=x1"
+}
+V {}
+S {}
+E {}
+L 4 -130 -60 -130 60 {}
+L 4 -130 60 150 60 {}
+L 4 150 -60 150 60 {}
+L 4 -130 -60 150 -60 {}
+L 4 150 0 170 0 {}
+L 4 20 60 20 80 {}
+L 4 20 -80 20 -60 {}
+L 4 -150 -40 -130 -40 {}
+L 4 -150 -20 -130 -20 {}
+L 4 -150 0 -130 0 {}
+L 4 -150 20 -130 20 {}
+L 4 -150 40 -130 40 {}
+B 5 167.5 -2.5 172.5 2.5 {name=Vout sig_type=std_logic dir=out}
+B 5 17.5 77.5 22.5 82.5 {name=Gnd sig_type=std_logic dir=in}
+B 5 17.5 -82.5 22.5 -77.5 {name=Vdd sig_type=std_logic dir=in}
+B 5 -152.5 -42.5 -147.5 -37.5 {name=inp1 sig_type=std_logic dir=in}
+B 5 -152.5 -22.5 -147.5 -17.5 {name=d2 sig_type=std_logic dir=in}
+B 5 -152.5 -2.5 -147.5 2.5 {name=d1 sig_type=std_logic dir=in}
+B 5 -152.5 17.5 -147.5 22.5 {name=d0 sig_type=std_logic dir=in}
+B 5 -152.5 37.5 -147.5 42.5 {name=inp2 sig_type=std_logic dir=in}
+T {Vout} 145 -4 0 1 0.2 0.2 {}
+T {Gnd} 16 55 3 0 0.2 0.2 {}
+T {Vdd} 24 -55 1 0 0.2 0.2 {}
+T {inp1} -125 -44 0 0 0.2 0.2 {}
+T {d2} -125 -24 0 0 0.2 0.2 {}
+T {d1} -125 -4 0 0 0.2 0.2 {}
+T {d0} -125 16 0 0 0.2 0.2 {}
+T {inp2} -125 36 0 0 0.2 0.2 {}
+T {3bitDAC} -19.5 -16 0 0 0.3 0.3 {}

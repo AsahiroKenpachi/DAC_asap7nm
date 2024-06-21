@@ -1,0 +1,57 @@
+v {xschem version=3.4.5 file_version=1.2
+}
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=x1"
+}
+V {}
+S {}
+E {}
+L 4 -300 -150 -300 -130 {}
+L 4 -430 -110 -410 -110 {}
+L 4 -430 -90 -410 -90 {}
+L 4 -430 -70 -410 -70 {}
+L 4 -430 -50 -410 -50 {}
+L 4 -430 -30 -410 -30 {}
+L 4 -430 -10 -410 -10 {}
+L 4 -430 10 -410 10 {}
+L 4 -430 30 -410 30 {}
+L 4 -430 50 -410 50 {}
+L 4 -180 -10 -160 -10 {}
+L 4 -430 70 -410 70 {}
+L 4 -430 90 -410 90 {}
+L 4 -300 110 -300 130 {}
+L 4 -180 -130 -180 110 {}
+L 4 -410 110 -180 110 {}
+L 4 -410 -130 -410 110 {}
+L 4 -410 -130 -180 -130 {}
+B 5 -302.5 -152.5 -297.5 -147.5 {name=Vdd sig_type=std_logic dir=in}
+B 5 -432.5 -112.5 -427.5 -107.5 {name=inp1 sig_type=std_logic dir=in}
+B 5 -432.5 -92.5 -427.5 -87.5 {name=d0 sig_type=std_logic dir=in}
+B 5 -432.5 -72.5 -427.5 -67.5 {name=d1 sig_type=std_logic dir=in}
+B 5 -432.5 -52.5 -427.5 -47.5 {name=d2 sig_type=std_logic dir=in}
+B 5 -432.5 -32.5 -427.5 -27.5 {name=d3 sig_type=std_logic dir=in}
+B 5 -432.5 -12.5 -427.5 -7.5 {name=d4 sig_type=std_logic dir=in}
+B 5 -432.5 7.5 -427.5 12.5 {name=d5 sig_type=std_logic dir=in}
+B 5 -432.5 27.5 -427.5 32.5 {name=d6 sig_type=std_logic dir=in}
+B 5 -432.5 47.5 -427.5 52.5 {name=d7 sig_type=std_logic dir=in}
+B 5 -162.5 -12.5 -157.5 -7.5 {name=Vout sig_type=std_logic dir=out}
+B 5 -432.5 67.5 -427.5 72.5 {name=d8 sig_type=std_logic dir=in}
+B 5 -432.5 87.5 -427.5 92.5 {name=inp2 sig_type=std_logic dir=in}
+B 5 -302.5 127.5 -297.5 132.5 {name=Gnd sig_type=std_logic dir=in}
+T {9bitDAC} -329.5 -16 0 0 0.3 0.3 {}
+T {Vdd} -296 -125 1 0 0.2 0.2 {}
+T {inp1} -405 -114 0 0 0.2 0.2 {}
+T {d0} -405 -94 0 0 0.2 0.2 {}
+T {d1} -405 -74 0 0 0.2 0.2 {}
+T {d2} -405 -54 0 0 0.2 0.2 {}
+T {d3} -405 -34 0 0 0.2 0.2 {}
+T {d4} -405 -14 0 0 0.2 0.2 {}
+T {d5} -405 6 0 0 0.2 0.2 {}
+T {d6} -405 26 0 0 0.2 0.2 {}
+T {d7} -405 46 0 0 0.2 0.2 {}
+T {Vout} -185 -14 0 1 0.2 0.2 {}
+T {d8} -405 66 0 0 0.2 0.2 {}
+T {inp2} -405 86 0 0 0.2 0.2 {}
+T {Gnd} -304 105 3 0 0.2 0.2 {}
